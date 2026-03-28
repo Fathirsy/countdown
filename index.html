@@ -2,15 +2,25 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Spider-Man: Brand New Day Countdown</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #020617;
             overflow: hidden;
+            height: 100vh;
+            height: 100dvh;
+            width: 100vw;
+            position: fixed;
         }
         
         .spidey-bg {
@@ -18,6 +28,8 @@
                 radial-gradient(circle at 40% 50%, rgba(30, 58, 138, 0.4) 0%, transparent 50%),
                 radial-gradient(circle at 60% 50%, rgba(185, 28, 28, 0.3) 0%, transparent 50%),
                 #020617;
+            height: 100%;
+            width: 100%;
         }
 
         @keyframes floatRandom {
@@ -35,7 +47,7 @@
             100% { transform: translate(0px, 0px); }
         }
 
-        /* --- EFEK GLITCH BARU --- */
+        /* --- EFEK GLITCH --- */
         @keyframes heavyGlitchBurst {
             0% { transform: scale(1); text-shadow: 0 0 0 transparent; }
             5% { transform: translate(-7px, 4px) skewX(10deg); text-shadow: 6px 0 #ff0000, -6px 0 #0066ff, 3px 3px #ff0000; }
@@ -50,7 +62,6 @@
         .glitch-active {
             animation: floatRandom 8s ease-in-out infinite, heavyGlitchBurst 0.6s ease-in-out forwards !important;
         }
-        /* ------------------------ */
 
         .spidey-title {
             color: white;
@@ -70,8 +81,8 @@
             top: 50%;
             left: 50%;
             transform-origin: center;
-            width: 110vh;
-            height: 110vh;
+            width: 100vmin; 
+            height: 100vmin;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g fill="none" stroke="white" stroke-width="0.2" opacity="0.08"><circle cx="50" cy="50" r="10"/><circle cx="50" cy="50" r="20"/><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="40"/><circle cx="50" cy="50" r="50"/><line x1="50" y1="0" x2="50" y2="100"/><line x1="0" y1="50" x2="100" y2="50"/><line x1="15" y1="15" x2="85" y2="85"/><line x1="85" y1="15" x2="15" y2="85"/><line x1="30" y1="0" x2="70" y2="100"/><line x1="70" y1="0" x2="30" y2="100"/><line x1="0" y1="30" x2="100" y2="70"/><line x1="0" y1="70" x2="100" y2="30"/></g></svg>') no-repeat center;
             background-size: contain;
             pointer-events: none;
@@ -113,16 +124,11 @@
             align-items: center;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 0.5rem;
             border-radius: 9999px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .music-container:hover {
-            border-color: rgba(239, 68, 68, 0.5);
-            transform: translateY(-2px);
         }
 
         .music-info-group {
@@ -163,7 +169,6 @@
             background: #ef4444;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
         }
 
         .music-control {
@@ -176,26 +181,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
             flex-shrink: 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .music-control::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.8), transparent);
-            animation: scan 3s linear infinite;
-        }
-
-        .music-control:hover {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: rgba(239, 68, 68, 0.5);
         }
 
         .particles {
@@ -206,8 +192,11 @@
         }
 
         .web-pattern {
+            position: absolute;
+            inset: 0;
             background-image: radial-gradient(circle, #ffffff08 1px, transparent 1px);
             background-size: 40px 40px;
+            pointer-events: none;
         }
 
         .timer-card {
@@ -215,9 +204,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 10;
         }
 
@@ -237,12 +226,6 @@
             100% { transform: translateX(100%); }
         }
 
-        .timer-card:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
-        }
-
         .number-glow {
             font-variant-numeric: tabular-nums;
             background: linear-gradient(to bottom, #fff 40%, #cbd5e1 100%);
@@ -251,14 +234,14 @@
         }
     </style>
 </head>
-<body class="text-white min-h-screen flex flex-col justify-between spidey-bg relative">
+<body class="text-white spidey-bg relative">
     
     <audio id="bgMusic" loop>
         <source src="mw.mp3" type="audio/mpeg">
     </audio>
 
     <div class="music-wrapper">
-        <p class="music-hint">Not perfect - MW, lyoraChay, BrianVal</p>
+        <p class="music-hint">Not perfect - MW</p>
         <div class="music-container">
             <div id="musicControls" class="music-info-group">
                 <div class="music-info italic opacity-80">Volume</div>
@@ -272,59 +255,59 @@
     </div>
     
     <div class="spider-web-bg"></div>
-    <div class="absolute inset-0 web-pattern pointer-events-none opacity-60"></div>
+    <div class="web-pattern opacity-60"></div>
     <canvas id="particleCanvas" class="particles"></canvas>
 
-    <header class="relative z-10 pt-32 md:pt-24 px-6 text-center">
-        <div class="inline-block">
-            <h1 id="spideyTitle" class="text-5xl md:text-8xl font-900 spidey-title italic uppercase">
-                Spider-Man
-            </h1>
-        </div>
-        <br>
-        <div class="inline-block">
-            <h2 class="text-sm md:text-2xl font-light tracking-[0.3em] md:tracking-[0.5em] text-blue-200/40 uppercase spidey-subtitle">
-                Brand New Day
-            </h2>
-        </div>
-    </header>
+    <!-- Kontainer utama dengan jarak yang pas -->
+    <div class="relative z-10 h-full flex flex-col justify-between pt-32 pb-16 px-6 overflow-hidden md:pt-24 md:pb-24">
+        
+        <header class="text-center">
+            <div class="inline-block">
+                <h1 id="spideyTitle" class="text-5xl md:text-8xl font-[900] spidey-title italic uppercase">
+                    Spider-Man
+                </h1>
+            </div>
+            <br>
+            <div class="inline-block mt-2">
+                <h2 class="text-sm md:text-2xl font-light tracking-[0.3em] md:tracking-[0.5em] text-blue-200/40 uppercase spidey-subtitle">
+                    Brand New Day
+                </h2>
+            </div>
+        </header>
 
-    <main class="relative z-20 px-4 py-8">
-        <div class="max-w-4xl mx-auto">
+        <main class="w-full my-auto py-12">
             <div class="grid grid-cols-4 gap-2 md:gap-6 max-w-2xl mx-auto">
-                <div class="timer-card rounded-xl md:rounded-2xl p-2 md:p-6 text-center group">
+                <div class="timer-card rounded-xl md:rounded-2xl p-2 md:p-6 text-center">
                     <span id="days" class="number-glow block text-xl md:text-5xl font-black mb-1 tracking-tight">000</span>
-                    <span class="text-[7px] md:text-[9px] uppercase tracking-wider text-red-500 font-bold group-hover:text-blue-400 transition-colors">Hari</span>
+                    <span class="text-[7px] md:text-[9px] uppercase tracking-wider text-red-500 font-bold">Hari</span>
                 </div>
-                <div class="timer-card rounded-xl md:rounded-2xl p-2 md:p-6 text-center group">
+                <div class="timer-card rounded-xl md:rounded-2xl p-2 md:p-6 text-center">
                     <span id="hours" class="number-glow block text-xl md:text-5xl font-black mb-1">00</span>
-                    <span class="text-[7px] md:text-[9px] uppercase tracking-wider text-red-500 font-bold group-hover:text-blue-400 transition-colors">Jam</span>
+                    <span class="text-[7px] md:text-[9px] uppercase tracking-wider text-red-500 font-bold">Jam</span>
                 </div>
-                <div class="timer-card rounded-xl md:rounded-2xl p-2 md:p-6 text-center group">
+                <div class="timer-card rounded-xl md:rounded-2xl p-2 md:p-6 text-center">
                     <span id="minutes" class="number-glow block text-xl md:text-5xl font-black mb-1">00</span>
-                    <span class="text-[7px] md:text-[9px] uppercase tracking-wider text-red-500 font-bold group-hover:text-blue-400 transition-colors">Menit</span>
+                    <span class="text-[7px] md:text-[9px] uppercase tracking-wider text-red-500 font-bold">Menit</span>
                 </div>
-                <div class="timer-card rounded-xl md:rounded-2xl p-2 md:p-6 text-center group border-red-900/30">
+                <div class="timer-card rounded-xl md:rounded-2xl p-2 md:p-6 text-center border-red-900/30">
                     <span id="seconds" class="number-glow block text-xl md:text-5xl font-black mb-1 text-red-500">00</span>
                     <span class="text-[7px] md:text-[9px] uppercase tracking-wider text-red-500 font-bold">Detik</span>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer class="relative z-10 pb-16 px-6 text-center">
-        <p class="mt-4 text-gray-400 text-xs md:text-base mb-6 md:mb-10 max-w-xs mx-auto font-light italic">
-            "program ini gweh buat dengan sepenuh hati ✌"
-        </p>
-        <div class="flex items-center justify-center space-x-4 mb-6">
-            <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-red-600"></div>
-            <p class="text-[10px] text-gray-500 tracking-[0.3em] uppercase font-bold">31 Juli 2026</p>
-            <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-blue-600"></div>
-        </div>
-        <p class="text-[9px] text-white/20 tracking-widest uppercase">
-            Developed for u 
-        </p>
-    </footer>
+        <footer class="text-center">
+            <p class="text-gray-400 text-xs md:text-base mb-6 md:mb-10 max-w-xs mx-auto font-light italic">
+                "program ini gweh buat dengan sepenuh hati ✌"
+            </p>
+            <div class="flex items-center justify-center space-x-4 mb-6">
+                <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-red-600"></div>
+                <p class="text-[10px] text-gray-500 tracking-[0.3em] uppercase font-bold">31 Juli 2026</p>
+                <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-blue-600"></div>
+            </div>
+            <p class="text-[9px] text-white/20 tracking-widest uppercase">Developed for u</p>
+        </footer>
+    </div>
 
     <script>
         const music = document.getElementById('bgMusic');
@@ -334,23 +317,17 @@
         const volumeControl = document.getElementById('volumeControl');
         const spideyTitle = document.getElementById('spideyTitle');
 
-        // Pengaturan volume awal
         music.volume = 0.5;
 
-        // Logic Glitch Terintegrasi
         function triggerGlitch() {
             spideyTitle.classList.add('glitch-active');
             setTimeout(() => {
                 spideyTitle.classList.remove('glitch-active');
-                // Picu glitch lagi secara acak antara 4-8 detik
-                const nextGlitch = Math.random() * 4000 + 4000;
-                setTimeout(triggerGlitch, nextGlitch);
-            }, 600); // Durasi animasi glitch
+                setTimeout(triggerGlitch, Math.random() * 4000 + 4000);
+            }, 600);
         }
-        // Mulai glitch pertama setelah 3 detik
         setTimeout(triggerGlitch, 3000);
 
-        // Script untuk mengatur volume
         volumeControl.addEventListener('input', (e) => {
             music.volume = e.target.value;
         });
@@ -405,52 +382,43 @@
 
         function initParticles() {
             particles = [];
-            for (let i = 0; i < 150; i++) {
-                particles.push(new Particle());
-            }
+            for (let i = 0; i < 80; i++) particles.push(new Particle());
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animate);
         }
-
-        window.onload = function() {
-            resize();
-            initParticles();
-            animate();
-            updateCountdown();
-        };
-
-        window.addEventListener('resize', resize);
 
         const releaseDate = new Date("July 31, 2026 00:00:00").getTime();
 
         const updateCountdown = () => {
             const now = new Date().getTime();
             const distance = releaseDate - now;
-
             if (distance < 0) {
                 document.querySelector("main").innerHTML = "<h2 class='text-4xl font-bold text-red-600 animate-pulse'>SUDAH TAYANG!</h2>";
                 return;
             }
-
             const d = Math.floor(distance / (1000 * 60 * 60 * 24));
             const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((distance % (1000 * 60)) / 1000);
-
             document.getElementById("days").innerText = d;
-            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
-            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+            document.getElementById("hours").innerText = String(h).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(m).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(s).padStart(2, '0');
         };
 
-        setInterval(updateCountdown, 1000);
+        window.onload = function() {
+            resize();
+            initParticles();
+            animate();
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        };
+
+        window.addEventListener('resize', resize);
     </script>
 </body>
 </html>
